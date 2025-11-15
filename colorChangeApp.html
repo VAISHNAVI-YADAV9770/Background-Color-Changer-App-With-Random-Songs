@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Change App</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      button {
+        border: solid 1px rgb(21, 154, 199);
+        border-radius: 7px;
+        background-color: rgb(62, 161, 207);
+        color: mediumvioletred;
+      }
+    </style>/
+  </head>
+  <body>
+    <h1>Background Color Changer App With Random Songs</h1>
+    <button onclick="changeColor();" id="btn">Click me</button>
+    <p id="color-name">Current Color: white</p>
+    <p id="index"></p>
+    <img id="song-img" width="300" />
+
+    <script>
+      let colors = [
+        "Red",
+        "Pink",
+        "Brown",
+        "Green",
+        "Yellow",
+        "Crimson",
+        "Blue",
+        "Purple",
+        "Orange",
+      ];
+
+      let songs = [
+        "songs/Aaya_Re_Toofan.mp3",
+        "songs/Radha_Gori_Gori.mp3",
+        "songs/RANU_BOMBAI.mp3",
+        "songs/Satranga_X_Pehle_Bhi_Main_Mashup.mp3",
+      ];
+
+      let images = [
+        "Images/aaya tufan.webp",
+        "Images/Radha_Gori.jpg",
+        "Images/Ranu.jpg",
+        "Images/Animal_mashup.jpg",
+      ];
+
+      let bgMusic = new Audio();
+      function changeColor() {
+        let randomIndex = Math.floor(Math.random() * colors.length);
+        let randomIndex2 = Math.floor(Math.random() * songs.length);
+
+        let selectedColor = colors[randomIndex];
+        let selectedSong = songs[randomIndex2];
+
+        document.body.style.backgroundColor = selectedColor;
+        document.querySelector(
+          "#color-name"
+        ).innerHTML = `Current Color: ${selectedColor}`;
+        document.querySelector(
+          "#index"
+        ).innerHTML = `Current Index: ${randomIndex}`;
+        bgMusic.src = selectedSong;
+        bgMusic.loop = true;
+        bgMusic.play();
+
+        document.getElementById("song-img").src = images[randomIndex2];
+      }
+    </script>
+  </body>
+</html>
